@@ -69,6 +69,9 @@ const userSlice = createSlice({
         },
         loadingChange(state,action){
             state.loading= !state.loading
+        },
+        loginState(state,action){
+            state.logged= true
         }
     },
     // Thunks
@@ -110,5 +113,5 @@ const userSlice = createSlice({
     }
 })
 
-export const {logout,loadingChange} = userSlice.actions // Esto se utiliza en el dispatch
+export const {logout,loadingChange,loginState} = userSlice.actions // Esto se utiliza en el dispatch
 export default userSlice.reducer // Esto en el store
