@@ -1,21 +1,24 @@
-import React,{useRef, useState} from 'react'
+import React,{ useState } from 'react'
 import { FcGoogle } from 'react-icons/fc';
 // import {useNavigate} from 'react-router-dom'
 // import { AiFillFacebook,AiFillGithub } from 'react-icons/ai';
 import { useSelector,useDispatch} from 'react-redux';
 import { loginDisplay } from '../features/displays/displaySlice';
-import { loginState } from '../features/user/userSlice';
-// import '../static/css/Login.css'
+import { loginState,login } from '../features/user/userSlice';
+
 
 export default function Login() {
   const Dispatch = useDispatch()
   const {loginShow} = useSelector(state=>state.displays)
+  const {logged} = useSelector(state=>state.user)
   
   const send=(e)=>{
     e.preventDefault()
+    Dispatch(login({email:e.target.email.value,password:e.target.password.value}))
   }
   return(
     <>
+    {!logged&& <>
     {loginShow&&<div className='bg-Cfinn-900 opacity-60 h-screen w-screen fixed z-40'></div>}
     <div className={`bg-gradient-to-r from-Cmaroon-flush-600 to-Cfinn-700 fixed  max-h-fit max-w-fit rounded-md top-24 grid grid-cols-2 ${!loginShow?"hidden":""} z-50`}>
       <div className='p-10'>
@@ -23,9 +26,9 @@ export default function Login() {
         <form action="" onSubmit={send} className="flex flex-col">
           <h1 className=' self-center text-4xl mb-5 mx-32 text-Cwaikawa-gray-200'>Login</h1>
           <label className='text-Cwaikawa-gray-200' htmlFor="email">Email</label>
-          <input id="email" type="text" className='' name='email'/>
+          <input id="email" type="email" className='' name='email' required />
           <label className='text-Cwaikawa-gray-200' htmlFor="password">Password</label>
-          <input id='password' type="text" className='' name='password'/>
+          <input id='password' type="password" className='' name='password' required/>
           <button className='bg-gradient-to-r from-violet-500 to-fuchsia-500 text-Cfinn-200 mt-2 mx-7' onClick={()=>{Dispatch(loginState())}} >Login</button>
         </form>
         <div className='h-1 bg-Cjelly-bean-600 my-5 mx-20'></div>
@@ -37,6 +40,7 @@ export default function Login() {
 
       </div>
      
+      </>}
     </>
 
   )

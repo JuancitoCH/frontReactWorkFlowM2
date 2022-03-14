@@ -19,6 +19,7 @@ export default function Header() {
         : <button onClick={()=>Dispatch(logout())}>Log out</button>
       }
         <div className='bg-Cmaroon-flush-500 rounded-full w-10 h-10 mx-auto' ></div>
+        {logged&&<p className='text-Cmaroon-flush-500'>{name}</p>}
         <nav className=''>
           <ul className=''>
             <Link to={'/'}>Home</Link>

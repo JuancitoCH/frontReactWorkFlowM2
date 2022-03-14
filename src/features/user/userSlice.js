@@ -3,7 +3,7 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 
 export const login = createAsyncThunk("user/login",async (credentials,thunkAPI)=>{
     // console.log(credentials)
-    const response = await fetch("https://mushokuserverjuancito2022.herokuapp.com/authenticate/login",{
+    const response = await fetch("https://workflowproyectomes2.herokuapp.com/authenticate/login",{
             method:"POST",
             credentials:'include',
             headers:{
@@ -58,14 +58,17 @@ const userSlice = createSlice({
     initialState:{
         logged:false,
         name:"",
+        email:"",
         loading:false,
-        error:true,
+        error:false,
         message:""
     },
     reducers:{
         logout(state,action){
             state.logged = false
             state.name = ""
+            state.email=""
+
         },
         loadingChange(state,action){
             state.loading= !state.loading
@@ -85,12 +88,17 @@ const userSlice = createSlice({
             state.logged = true
             state.error = false
             state.name = action.payload.user.userName
+            state.email = action.payload.user.email
+            console.log(action.payload)
         })
 
         builder.addCase(login.rejected,(state,action)=>{
             state.loading = false
             state.error = true
             state.message = action.payload.message
+            state.logged=false
+            state.name=""
+            state.email=""
         })
 
 
