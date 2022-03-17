@@ -1,40 +1,37 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { get, post } from '../../api/axiosConfig'
 
-
-export const login = createAsyncThunk("user/login",async (credentials,thunkAPI)=>{
-    // console.log(credentials)
-    const response = await fetch("https://workflowproyectomes2.herokuapp.com/authenticate/login",{
-            method:"POST",
-            credentials:'include',
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body:JSON.stringify({
-                email:credentials.email,
-                password:credentials.password
-            })
-        })
-        const data = await response.json()
-        console.log(data)
-        if(data.success===false){
-            return thunkAPI.rejectWithValue(data)
-        }
-        // console.log(data)
-
+export const login = createAsyncThunk("user/login", async (credentials, thunkAPI) => {
+    const { data } = await post('/authenticate/login', {
+        email: credentials.email,
+        password: credentials.password
+    })
+    // console.log(data)
+    if (data.success === false) {
+        return thunkAPI.rejectWithValue(data)
+    }
     //action.payload del reducer (fullfilled)
     return data
 })
-
-export const validate = createAsyncThunk("user/validate",async (params,thunkAPI)=>{
-    const response = await fetch("https://mushokuserverjuancito2022.herokuapp.com/authenticate/validate",{
-      method:"POST",
-      credentials:'include'
+export const register = createAsyncThunk("user/register", async (credentials, thunkAPI) => {
+    const { data } = await post('/authenticate/register', {
+        userName: credentials.userName,
+        userPhoto: credentials.userPhoto,
+        email: credentials.email,
+        password: credentials.password
     })
-
-    const data = await response.json()
-
     console.log(data)
-    if(!data.logged){
+    if (data.success === false) {
+        return thunkAPI.rejectWithValue(data)
+    }
+    return data
+})
+
+export const validate = createAsyncThunk("user/validate", async (params, thunkAPI) => {
+
+    const data = await post('/authenticate/logged')
+    console.log(data)
+    if (!data.logged) {
         console.log("Lanzando error...")
         return thunkAPI.rejectWithValue("Error de loggeo")
     }
@@ -54,36 +51,36 @@ export const validate = createAsyncThunk("user/validate",async (params,thunkAPI)
 
 
 const userSlice = createSlice({
-    name:"user",
-    initialState:{
-        logged:false,
-        name:"",
-        email:"",
-        loading:false,
-        error:false,
-        message:""
+    name: "user",
+    initialState: {
+        logged: false,
+        name: "",
+        email: "",
+        loading: false,
+        error: false,
+        message: ""
     },
-    reducers:{
-        logout(state,action){
+    reducers: {
+        logout(state, action) {
             state.logged = false
             state.name = ""
-            state.email=""
+            state.email = ""
 
         },
-        loadingChange(state,action){
-            state.loading= !state.loading
+        loadingChange(state, action) {
+            state.loading = !state.loading
         },
-        loginState(state,action){
-            state.logged= true
+        loginState(state, action) {
+            state.logged = true
         }
     },
     // Thunks
-    extraReducers(builder){
-        builder.addCase(login.pending,(state,action)=>{
-            state.loading=true
+    extraReducers(builder) {
+        builder.addCase(login.pending, (state, action) => {
+            state.loading = true
         })
 
-        builder.addCase(login.fulfilled,(state,action)=>{
+        builder.addCase(login.fulfilled, (state, action) => {
             state.loading = false
             state.logged = true
             state.error = false
@@ -92,34 +89,42 @@ const userSlice = createSlice({
             console.log(action.payload)
         })
 
-        builder.addCase(login.rejected,(state,action)=>{
+        builder.addCase(login.rejected, (state, action) => {
             state.loading = false
             state.error = true
             state.message = action.payload.message
-            state.logged=false
-            state.name=""
-            state.email=""
+            state.logged = false
+            state.name = ""
+            state.email = ""
         })
 
 
-        builder.addCase(validate.pending,(state,action)=>{
+        builder.addCase(validate.pending, (state, action) => {
             state.loading = true
         })
 
-        builder.addCase(validate.fulfilled,(state,action)=>{
+        builder.addCase(validate.fulfilled, (state, action) => {
             state.logged = true
             state.name = action.payload?.user?.firstName
             state.error = false
         })
 
-        builder.addCase(validate.rejected,(state,action)=>{
+        builder.addCase(validate.rejected, (state, action) => {
             console.log(action.payload)
             state.error = true
             state.logged = false
-            state.message= "Error"
+            state.message = "Error"
+        })
+
+
+        builder.addCase(register.fulfilled, (state, action) => {
+            console.log(action.payload)
+            // state.error = true
+            // state.logged = false
+            // state.message = "Error"
         })
     }
 })
 
-export const {logout,loadingChange,loginState} = userSlice.actions // Esto se utiliza en el dispatch
+export const { logout, loadingChange, loginState } = userSlice.actions // Esto se utiliza en el dispatch
 export default userSlice.reducer // Esto en el store

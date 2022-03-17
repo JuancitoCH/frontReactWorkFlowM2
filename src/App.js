@@ -3,6 +3,7 @@ import AlertError from './components/AlertError';
 import Header from "./components/Header";
 import Loader from "./components/Loader"
 import Login from "./components/Login"
+import Register from './components/Register';
 import Home from "./pages/Home"
 import Teams from './pages/Teams';
 function App() {
@@ -13,6 +14,7 @@ function App() {
     <AlertError/>
     <Header/>
     <Login/>
+    <Register/>
     <Loader/>
     <Routes>
       <Route path="/" element={<Home/>}/>

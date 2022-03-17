@@ -1,5 +1,5 @@
 import { logout } from '../features/user/userSlice';
-import { loginDisplay } from '../features/displays/displaySlice'
+import { loginDisplay, registerDisplay } from '../features/displays/displaySlice'
 import { useDispatch,useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import NavLi from './NavLi'
@@ -17,6 +17,10 @@ export default function Header() {
       {!logged?
         <button onClick={()=>Dispatch(loginDisplay())}>login</button>
         : <button onClick={()=>Dispatch(logout())}>Log out</button>
+      }
+      {
+        <button onClick={()=>Dispatch(registerDisplay())}>register</button>
+
       }
         <div className='bg-Cmaroon-flush-500 rounded-full w-10 h-10 mx-auto' ></div>
         {logged&&<p className='text-Cmaroon-flush-500'>{name}</p>}
