@@ -27,15 +27,23 @@ export const register = createAsyncThunk("user/register", async (credentials, th
     return data
 })
 
-export const validate = createAsyncThunk("user/validate", async (params, thunkAPI) => {
+export const validateLog = createAsyncThunk("user/validateLog", async (params, thunkAPI) => {
 
-    const data = await post('/authenticate/logged')
-    console.log(data)
-    if (!data.logged) {
-        console.log("Lanzando error...")
-        return thunkAPI.rejectWithValue("Error de loggeo")
+    const { data } = await post('/authenticate/logged')
+    // console.log(data)
+    
+    if (data.success === false) {
+        return thunkAPI.rejectWithValue(data)
     }
+    return data
+})
+export const logoutUser = createAsyncThunk("user/logoutUser", async (params, thunkAPI) => {
 
+    const { data } = await get('/authenticate/logout')
+    // console.log(data)
+    if (data.success === false) {
+        return thunkAPI.rejectWithValue(data)
+    }
     return data
 })
 
@@ -99,21 +107,42 @@ const userSlice = createSlice({
         })
 
 
-        builder.addCase(validate.pending, (state, action) => {
+        builder.addCase(validateLog.pending, (state, action) => {
             state.loading = true
         })
 
-        builder.addCase(validate.fulfilled, (state, action) => {
+        builder.addCase(validateLog.fulfilled, (state, action) => {
+            state.loading = false
             state.logged = true
-            state.name = action.payload?.user?.firstName
             state.error = false
+            state.name = action.payload.user.userName
+            state.email = action.payload.user.email
+            console.log(action.payload)
         })
 
-        builder.addCase(validate.rejected, (state, action) => {
-            console.log(action.payload)
+        builder.addCase(validateLog.rejected, (state, action) => {
+            state.loading = false
             state.error = true
+            state.message = action.payload.message
             state.logged = false
-            state.message = "Error"
+            state.name = ""
+            state.email = ""
+            
+        })
+
+
+        builder.addCase(logoutUser.pending, (state, action) => {
+            console.log(action.payload)
+            state.loading=true
+        })
+        builder.addCase(logoutUser.fulfilled, (state, action) => {
+            console.log(action.payload)
+            state.logged=false
+            state.name=""
+            state.email=""
+            state.loading=false
+            state.error=false
+            state.message=action.payload.message
         })
 
 

@@ -1,5 +1,8 @@
 import {createSlice,createAsyncThunk} from '@reduxjs/toolkit'
 import { get, post } from '../../api/axiosConfig'
+import {useSelector,useDispatch} from 'react-redux'
+
+
 
 export const getTeamsUser = createAsyncThunk('teams/getTeamsUser', async (credentials,thunkAPI)=>{
     const objectData = {
@@ -9,22 +12,44 @@ export const getTeamsUser = createAsyncThunk('teams/getTeamsUser', async (creden
     }
     const {data} = await post('',)
 })
+export const createTeamUser = createAsyncThunk('teams/createTeamUser', async (credentials,thunkAPI)=>{
+   const {data}  = await post('teams/create/team',{
+       name:credentials.name,
+       description:credentials.description,
+       img:credentials.img
+   })
+   return data
+})
+
 
 const teamsSlice = createSlice({
     name:"teams",
     initialState:{
-        teams:[]
+        teams:[],
+        changeTeams:1,
+        loading: false,
+        error: false,
+        message: ""
     },
     reducers:{
+        setTeams(state,actions){
+            state.changeTeams = actions.payload
+            console.log(state.changeTeams)
+        }
         
     },
     extraReducers(builder){
-        builder.addCase(getTeamsUser.pending, (state, action) => {
+        builder.addCase(createTeamUser.pending, (state, action) => {
             state.loading = true
+        })
+        builder.addCase(createTeamUser.fulfilled, (state, action) => {
+            state.loading = false
+            console.log(action.payload)
+            state.changeTeams = action.payload
         })
     }
     
 })
 
-// export const {loginDisplay} = displaySlice.actions // Esto se utiliza en el dispatch son los reducers comunes
+export const {setTeams} = teamsSlice.actions // Esto se utiliza en el dispatch son los reducers comunes
 export default teamsSlice.reducer // Esto en el store

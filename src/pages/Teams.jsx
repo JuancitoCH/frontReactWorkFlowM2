@@ -1,33 +1,42 @@
 import React, { useEffect, useState } from 'react'
-import List from '../components/List'
 import TeamsCreator from '../components/TeamsCreator'
+import {useSelector,useDispatch} from 'react-redux'
+import {teamCreatorDisplay} from '../features/displays/displaySlice'
+import {get} from '../api/axiosConfig'
+import List from '../components/List'
+import {MdOutlineLibraryAdd} from 'react-icons/md'
+
+
 export default function Teams() {
   const [teams,setTeams] = useState([])
-  useEffect(()=>{
-    setTeams([
-      {
-      image:"https://victorroblesweb.es/wp-content/uploads/2018/01/nodejs-victorroblesweb.png",
-      description:"Algunas sadaskldnasd asdasdnjiqwqopnqwk 12312 3",
-      title:"Titulo"
-    },
-    {
-      image:"https://miro.medium.com/max/384/1*To2H39eauxaeYxYMtV1afQ.png",
-      description:"Algunas sadaskldnasd asdasdnjiqwqopnqwk 12312 3",
-      title:"Titulo"
-    },
-  ])
-  },[])
-  
+  const {logged} = useSelector(state=>state.user)
+  const {changeTeams} = useSelector(state=>state.teams)
+  const {teamCreatorShow} = useSelector(state=>state.displays)
+  const Dispatch = useDispatch()
+  useEffect(async()=>{
+    if(logged){
+      const {data} = await get('/teams/')
+      // console.log(logged)
+      // console.log(data)
+      return setTeams(data)
+    }
+    setTeams([])
+  },[logged,changeTeams])
+
+  const displayCreator=()=>{
+    Dispatch(teamCreatorDisplay())
+  }
   return (
     <>
     <TeamsCreator/>
-    <div className='w-[calc(100%-2rem)] h-[calc(100%-.5rem)] mt-1 mb-2 bg-Cwaikawa-gray-800 text-slate-200'>
-        <div className='flex items-center'>
-        <h1 className='text-xl ml-2 mr-2'>Teams</h1>
-        <button className='text-2xl rounded-full bg-slate-500'>+</button>
+    <div className={`w-[calc(100%-2rem)] h-[calc(100%-.5rem)] mt-1 mb-2 bg-gradient-to-b  from-Paleta1-300 via-Paleta1-100 to-Paleta1-600 rounded-sm shadow-xl`}>
+        <div className='flex'>
+        <h1 className='text-3xl ml-2 mr-2'>Teams</h1>
+        <button onClick={displayCreator} className='text-3xl text-Paleta1-100 hover:text-red-500 '><MdOutlineLibraryAdd/></button>
         </div>
-        <div className=' flex flex-wrap justify-center rounded-sm shadow-lg'>
-            {teams.map((team,index)=>{ return <List key={index} image={team.image} description={team.description} title={team.title} />})}
+        <div className='flex justify-center rounded-sm shadow-lg'>
+          
+            {teams.length>0&&teams.map((team,index)=>{ return <List key={index} image={team.img} description={team.description} title={team.name} />})}
         </div>
     </div>
     </>

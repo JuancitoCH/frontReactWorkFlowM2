@@ -25,9 +25,9 @@ export default function Login() {
         <form action="" onSubmit={send} className="flex flex-col">
           <h1 className=' self-center text-4xl mb-5 mx-32 text-Cwaikawa-gray-200'>Login</h1>
           <label className='text-Cwaikawa-gray-200' htmlFor="email">Email</label>
-          <input id="email" type="email" className='' name='email' required />
+          <input  type="email" className='' name='email' required />
           <label className='text-Cwaikawa-gray-200' htmlFor="password">Password</label>
-          <input id='password' type="password" className='' name='password' required/>
+          <input  type="password" className='' name='password' required/>
           <button className='bg-gradient-to-r from-violet-500 to-fuchsia-500 text-Cfinn-200 mt-2 mx-7' onClick={()=>{Dispatch(loginState())}} >Login</button>
         </form>
         <div className='h-1 bg-Cjelly-bean-600 my-5 mx-20'></div>

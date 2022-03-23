@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {Route,Routes,BrowserRouter} from 'react-router-dom'
 import AlertError from './components/AlertError';
 import Header from "./components/Header";
@@ -6,11 +7,17 @@ import Login from "./components/Login"
 import Register from './components/Register';
 import Home from "./pages/Home"
 import Teams from './pages/Teams';
+import {useDispatch} from 'react-redux'
+import {validateLog} from './features/user/userSlice'
 function App() {
+  const Dispatch=useDispatch()
+  useEffect(()=>{
+    Dispatch(validateLog())
+  },[])
   return (
     <div className='md:ml-24 relative flex justify-center'>
     <BrowserRouter>
-    <div className='bg-Cwaikawa-gray-900 -z-50 h-screen w-screen fixed'></div>
+    <div className='bg-Paleta1-600 -z-50 h-screen w-screen fixed'></div>
     <AlertError/>
     <Header/>
     <Login/>

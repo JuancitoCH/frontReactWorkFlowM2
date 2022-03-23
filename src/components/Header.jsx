@@ -1,4 +1,4 @@
-import { logout } from '../features/user/userSlice';
+import { logoutUser } from '../features/user/userSlice';
 import { loginDisplay, registerDisplay } from '../features/displays/displaySlice'
 import { useDispatch,useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -11,19 +11,19 @@ export default function Header() {
     const Dispatch = useDispatch()
   return (
     <>
-      <button className={`fixed left-0 bg-Ceast-bay-600 `} onClick={()=>setHeaderShow(!headerShow)}>Ver</button>
+      <button className={`fixed left-0`} onClick={()=>setHeaderShow(!headerShow)}>Ver</button>
       <button className={`fixed mx-24 left-0 text-white ${!headerShow&&"hidden"}`} onClick={()=>setHeaderShow(!headerShow)}>x</button>
-      <header className={`fixed bg-Ceast-bay-600 z-50 text-Ceast-bay-300 w-24 p-3 h-screen left-0 items-center flex-col ${!headerShow&&"hidden"} md:flex text-center`}>
+      <header className={`fixed bg-Paleta1-300 z-50  w-24 p-3 h-screen left-0 items-center flex-col ${!headerShow&&"hidden"} md:flex text-center`}>
       {!logged?
         <button onClick={()=>Dispatch(loginDisplay())}>login</button>
-        : <button onClick={()=>Dispatch(logout())}>Log out</button>
+        : <button onClick={()=>Dispatch(logoutUser())}>Log out</button>
       }
       {
         <button onClick={()=>Dispatch(registerDisplay())}>register</button>
 
       }
-        <div className='bg-Cmaroon-flush-500 rounded-full w-10 h-10 mx-auto' ></div>
-        {logged&&<p className='text-Cmaroon-flush-500'>{name}</p>}
+        <div className={`bg-Paleta1-100 rounded-full w-10 h-10`} ></div>
+        {logged&&<p className={`text-Paleta1-100`}>{name}</p>}
         <nav className=''>
           <ul className=''>
             <Link to={'/'}>Home</Link>

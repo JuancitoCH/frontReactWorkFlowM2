@@ -6,6 +6,17 @@ module.exports = {
   theme: {
     extend: {
       colors:{
+        'Paleta2':{
+          '600':"#C9CBA3",
+          '300':"#FFE1A8",
+          '100':"#E26D5C"
+        },
+        'Paleta1':{
+          // '600':"#F8F7FF",
+          '100':"#F8F7FF",
+          '600':"#B8B8FF",
+          '300':"#9381FF"
+        },
         'Cmaroon-flush': {
           '200': '#edc2d2', 
           '300': '#e29db7', 
