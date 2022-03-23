@@ -20,6 +20,14 @@ export const createTeamUser = createAsyncThunk('teams/createTeamUser', async (cr
    })
    return data
 })
+export const createList = createAsyncThunk('teams/createList', async (credentials,thunkAPI)=>{
+   const {data}  = await post('teams/create/teamlist/'+credentials.idTeam,{
+       title:credentials.title,
+       description:credentials.description,
+       photo:credentials.photo
+   })
+   return data
+})
 
 
 const teamsSlice = createSlice({
@@ -29,7 +37,8 @@ const teamsSlice = createSlice({
         changeTeams:1,
         loading: false,
         error: false,
-        message: ""
+        message: "",
+        changeLists:false,
     },
     reducers:{
         setTeams(state,actions){
@@ -46,6 +55,16 @@ const teamsSlice = createSlice({
             state.loading = false
             console.log(action.payload)
             state.changeTeams = action.payload
+        })
+
+
+        builder.addCase(createList.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(createList.fulfilled, (state, action) => {
+            state.loading = false
+            console.log(action.payload)
+            state.changeLists = action.payload
         })
     }
     

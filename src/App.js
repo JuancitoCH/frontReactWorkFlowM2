@@ -9,6 +9,7 @@ import Home from "./pages/Home"
 import Teams from './pages/Teams';
 import {useDispatch} from 'react-redux'
 import {validateLog} from './features/user/userSlice'
+import ListAndTask from './pages/ListsAndTask'
 function App() {
   const Dispatch=useDispatch()
   useEffect(()=>{
@@ -26,6 +27,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home/>}/>
       <Route path="/teams" element={<Teams/>}/>
+      <Route path="/teams/list/:idTeam" element={<ListAndTask/>}/>
       {/* <Route path="/login" element={<Login/>} /> */}
       {/* <Route path="/login" element={<Login/>} />
       <Login/> */}

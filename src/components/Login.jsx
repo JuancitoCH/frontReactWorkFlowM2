@@ -11,13 +11,13 @@ export default function Login() {
   const Dispatch = useDispatch()
   const {loginShow} = useSelector(state=>state.displays)
   const {logged} = useSelector(state=>state.user)
-  
   const send=(e)=>{
     e.preventDefault()
     Dispatch(login({email:e.target.email.value,password:e.target.password.value}))
   }
   return(
     <>
+    {(logged && loginShow) && Dispatch(loginDisplay())}
     {loginShow&&<div className='bg-Cfinn-900 opacity-60 h-screen w-screen fixed z-40'></div>}
     <div className={`bg-gradient-to-r from-Cmaroon-flush-600 to-Cfinn-700 fixed  max-h-fit max-w-fit rounded-md top-24 grid grid-cols-2 ${!loginShow?"hidden":""} z-50`}>
       <div className='p-10'>

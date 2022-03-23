@@ -38,6 +38,8 @@ export default function TeamsCreator() {
         </form>
       </div>
       <List image={TeamCreator.image} description={TeamCreator.description} title={TeamCreator.title} />
+      <button onClick={display} className=''>Cancel</button>
+
     </div>
   )
 }

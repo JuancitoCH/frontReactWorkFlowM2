@@ -29,14 +29,14 @@ export default function Teams() {
   return (
     <>
     <TeamsCreator/>
-    <div className={`w-[calc(100%-2rem)] h-[calc(100%-.5rem)] mt-1 mb-2 bg-gradient-to-b  from-Paleta1-300 via-Paleta1-100 to-Paleta1-600 rounded-sm shadow-xl`}>
+    <div className={`w-[calc(100%-2rem)] min-h-[calc(100vh-2rem)] mt-1 mb-2 bg-gradient-to-b  from-Paleta1-300 via-Paleta1-100 to-Paleta1-600 rounded-sm shadow-xl`}>
         <div className='flex'>
         <h1 className='text-3xl ml-2 mr-2'>Teams</h1>
         <button onClick={displayCreator} className='text-3xl text-Paleta1-100 hover:text-red-500 '><MdOutlineLibraryAdd/></button>
         </div>
-        <div className='flex justify-center rounded-sm shadow-lg'>
-          
-            {teams.length>0&&teams.map((team,index)=>{ return <List key={index} image={team.img} description={team.description} title={team.name} />})}
+        <div className='flex justify-center flex-wrap '>
+            {/* {console.log(teams)} */}
+            {teams.length>0&&teams.map((team,index)=>{ return <List key={index} image={team.img} description={team.description} title={team.name} idTeam={team._id}/>})}
         </div>
     </div>
     </>

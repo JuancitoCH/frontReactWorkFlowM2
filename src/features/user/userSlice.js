@@ -66,7 +66,9 @@ const userSlice = createSlice({
         email: "",
         loading: false,
         error: false,
-        message: ""
+        message: "",
+        userPhoto:""
+
     },
     reducers: {
         logout(state, action) {
@@ -94,6 +96,7 @@ const userSlice = createSlice({
             state.error = false
             state.name = action.payload.user.userName
             state.email = action.payload.user.email
+            state.userPhoto = action.payload.user.userPhoto
             console.log(action.payload)
         })
 
@@ -104,6 +107,7 @@ const userSlice = createSlice({
             state.logged = false
             state.name = ""
             state.email = ""
+            state.userPhoto = ""
         })
 
 
@@ -117,6 +121,8 @@ const userSlice = createSlice({
             state.error = false
             state.name = action.payload.user.userName
             state.email = action.payload.user.email
+            state.userPhoto = action.payload.user.userPhoto
+
             console.log(action.payload)
         })
 
@@ -127,6 +133,7 @@ const userSlice = createSlice({
             state.logged = false
             state.name = ""
             state.email = ""
+            state.userPhoto = ""
             
         })
 
@@ -142,6 +149,7 @@ const userSlice = createSlice({
             state.email=""
             state.loading=false
             state.error=false
+            state.userPhoto = ""
             state.message=action.payload.message
         })
 
