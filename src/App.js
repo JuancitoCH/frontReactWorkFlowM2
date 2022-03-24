@@ -18,7 +18,7 @@ function App() {
   return (
     <div className='md:ml-24 relative flex justify-center'>
     <BrowserRouter>
-    <div className='bg-Paleta1-600 -z-50 h-screen w-screen fixed'></div>
+    <div className='bg-Cwaikawa-gray-900 -z-50 h-screen w-screen fixed'></div>
     <AlertError/>
     <Header/>
     <Login/>

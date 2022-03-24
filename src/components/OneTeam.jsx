@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-export default function List({image,description,title,idTeam=0}) {
+export default function OneTeam({image,description,title,idTeam=0}) {
   return (
     <article className='w-80 m-1 flex items-center flex-col bg-Paleta1-100 rounded-sm relative pb-4  shadow-lg'>
       <Link to={"/teams/list/"+idTeam}>

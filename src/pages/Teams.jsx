@@ -3,7 +3,7 @@ import TeamsCreator from '../components/TeamsCreator'
 import {useSelector,useDispatch} from 'react-redux'
 import {teamCreatorDisplay} from '../features/displays/displaySlice'
 import {get} from '../api/axiosConfig'
-import List from '../components/List'
+import List from '../components/OneTeam'
 import {MdOutlineLibraryAdd} from 'react-icons/md'
 
 
@@ -29,10 +29,10 @@ export default function Teams() {
   return (
     <>
     <TeamsCreator/>
-    <div className={`w-[calc(100%-2rem)] min-h-[calc(100vh-2rem)] mt-1 mb-2 bg-gradient-to-b  from-Paleta1-300 via-Paleta1-100 to-Paleta1-600 rounded-sm shadow-xl`}>
+    <div className={`w-[calc(100%-2rem)] min-h-[calc(100vh-2rem)] mt-1 mb-2 bg-Cwaikawa-gray-800 rounded-sm shadow-xl`}>
         <div className='flex'>
-        <h1 className='text-3xl ml-2 mr-2'>Teams</h1>
-        <button onClick={displayCreator} className='text-3xl text-Paleta1-100 hover:text-red-500 '><MdOutlineLibraryAdd/></button>
+        <h1 className='text-3xl ml-2 mr-2 text-white'>Teams</h1>
+        <button onClick={displayCreator} className='text-3xl text-Cmaroon-flush-500 hover:text-Cmaroon-flush-300'><MdOutlineLibraryAdd/></button>
         </div>
         <div className='flex justify-center flex-wrap '>
             {/* {console.log(teams)} */}

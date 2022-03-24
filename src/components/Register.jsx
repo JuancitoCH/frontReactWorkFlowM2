@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import React from 'react'
 import { FcGoogle } from 'react-icons/fc';
 // import {useNavigate} from 'react-router-dom'
 // import { AiFillFacebook,AiFillGithub } from 'react-icons/ai';
@@ -11,6 +11,7 @@ export default function Register() {
   const Dispatch = useDispatch()
   const {registerShow} = useSelector(state=>state.displays)
   const {logged} = useSelector(state=>state.user)
+
   
   const send=(e)=>{
     e.preventDefault()
@@ -19,7 +20,7 @@ export default function Register() {
   return(
     <>
     {registerShow&&<div className='bg-Cfinn-900 opacity-60 h-screen w-screen fixed z-40'></div>}
-    <div className={`bg-gradient-to-r from-Cmaroon-flush-600 to-Cfinn-700 fixed  max-h-fit max-w-fit rounded-md top-24 grid grid-cols-2 ${!registerShow?"hidden":""} z-50`}>
+    <div  className={`bg-gradient-to-r from-Cmaroon-flush-600 to-Cfinn-700 fixed  max-h-fit max-w-fit rounded-md top-24 grid grid-cols-2 ${!registerShow?"hidden":""} z-50`}>
       <div className='p-10'>
         <button onClick={()=>Dispatch(registerDisplay())} className='absolute right-4 top-2 text-Cmaroon-flush-800'>X</button>
         <form action="" onSubmit={send} className="flex flex-col">

@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { setTeams, createTeamUser } from '../features/teams/teamsSlice'
 import { teamCreatorDisplay } from '../features/displays/displaySlice'
 import { useDispatch,useSelector } from 'react-redux'
-import List from './List'
+import List from './OneTeam'
 export default function TeamsCreator() {
   const title = useRef()
   const Dispatch = useDispatch()
