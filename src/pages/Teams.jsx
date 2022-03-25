@@ -3,7 +3,7 @@ import TeamsCreator from '../components/TeamsCreator'
 import {useSelector,useDispatch} from 'react-redux'
 import {teamCreatorDisplay} from '../features/displays/displaySlice'
 import {get} from '../api/axiosConfig'
-import List from '../components/OneTeam'
+import OneTeam from '../components/OneTeam'
 import {MdOutlineLibraryAdd} from 'react-icons/md'
 
 
@@ -18,6 +18,7 @@ export default function Teams() {
       const {data} = await get('/teams/')
       // console.log(logged)
       // console.log(data)
+      console.log(data)
       return setTeams(data)
     }
     setTeams([])
@@ -36,7 +37,7 @@ export default function Teams() {
         </div>
         <div className='flex justify-center flex-wrap '>
             {/* {console.log(teams)} */}
-            {teams.length>0&&teams.map((team,index)=>{ return <List key={index} image={team.img} description={team.description} title={team.name} idTeam={team._id}/>})}
+            {teams.length>0&&teams.map((team,index)=>{ return <OneTeam key={index} image={team.img} description={team.description} title={team.name} idTeam={team._id} members={team.members} />})}
         </div>
     </div>
     </>

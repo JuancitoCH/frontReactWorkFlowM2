@@ -20,7 +20,7 @@ export default function ListCreator() {
     }
     
   return (
-    <div className={`absolute top-0 bg-red-400 ${!listCreatorShow&&'hidden'} `}>
+    <div className={`absolute top-0 right-8 bg-red-400 ${!listCreatorShow&&'hidden'} `}>
         <button onClick={()=>Dispatch(listCreatorDisplay())}>x</button>
         <h2>ListCreator</h2>
         <form className='flex flex-col' onSubmit={send} action="">

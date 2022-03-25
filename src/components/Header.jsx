@@ -17,12 +17,11 @@ export default function Header() {
       <button className={`fixed mx-24 text-2xl left-0 text-Paleta1-100 z-50 ${!headerShow&&"hidden"}`} onClick={()=>setHeaderShow(!headerShow)}><BiArrowToLeft/></button>
       <header className={`fixed bg-Ceast-bay-600 z-50  w-24 p-3 h-screen left-0 items-center flex-col ${!headerShow&&"hidden"} md:flex text-center`}>
       {!logged?
+        <>
         <button onClick={()=>Dispatch(loginDisplay())}>login</button>
-        : <button onClick={()=>{Dispatch(logoutUser());navigate('/')}}>Log out</button>
-      }
-      {
         <button onClick={()=>Dispatch(registerDisplay())}>register</button>
-
+        </>
+        : <button onClick={()=>{Dispatch(logoutUser());navigate('/')}}>Log out</button>
       }
         <div className={`bg-Paleta1-300 rounded-full w-10 h-10 overflow-hidden`} >
           {logged&&<img src={userPhoto}/>}

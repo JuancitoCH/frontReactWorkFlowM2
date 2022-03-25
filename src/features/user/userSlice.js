@@ -94,6 +94,7 @@ const userSlice = createSlice({
             state.loading = false
             state.logged = true
             state.error = false
+            state.message =""
             state.name = action.payload.user.userName
             state.email = action.payload.user.email
             state.userPhoto = action.payload.user.userPhoto

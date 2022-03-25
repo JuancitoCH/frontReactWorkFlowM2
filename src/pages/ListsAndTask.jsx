@@ -7,7 +7,6 @@ import { listCreatorDisplay } from '../features/displays/displaySlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { MdOutlineLibraryAdd } from 'react-icons/md'
 
-
 export default function ListsAndTask() {
 
     const { listCreatorShow } = useSelector(state => state.displays)
@@ -19,7 +18,6 @@ export default function ListsAndTask() {
         const { data } = await get('/teams/lists/tasks/' + idTeam)
         if (data.success === false) return setListas([])
         setListas(data)
-        // console.log(listas)
     }, [changeLists])
 
     return (
@@ -31,7 +29,7 @@ export default function ListsAndTask() {
                 </div>
                 <div className=' md:overflow-x-scroll md:flex mt-2'>
                     {listas.map(lista => {
-                        return <RealList key={lista._id} title={lista.title} description={lista.description} photo={lista.photo} tasks={lista.tasks} date={lista.date} />
+                        return <RealList key={lista._id} idList={lista._id} title={lista.title} description={lista.description} photo={lista.photo} tasks={lista.tasks} date={lista.date} />
                     })}
 
                 </div>
