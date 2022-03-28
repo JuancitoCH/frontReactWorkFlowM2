@@ -67,7 +67,8 @@ const userSlice = createSlice({
         loading: false,
         error: false,
         message: "",
-        userPhoto:""
+        userPhoto:"",
+        id:""
 
     },
     reducers: {
@@ -98,7 +99,8 @@ const userSlice = createSlice({
             state.name = action.payload.user.userName
             state.email = action.payload.user.email
             state.userPhoto = action.payload.user.userPhoto
-            console.log(action.payload)
+            state.id = action.payload.user.id
+            // console.log(action.payload)
         })
 
         builder.addCase(login.rejected, (state, action) => {
@@ -123,8 +125,8 @@ const userSlice = createSlice({
             state.name = action.payload.user.userName
             state.email = action.payload.user.email
             state.userPhoto = action.payload.user.userPhoto
-
-            console.log(action.payload)
+            state.id = action.payload.user.id
+            // console.log(action.payload)
         })
 
         builder.addCase(validateLog.rejected, (state, action) => {

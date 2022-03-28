@@ -14,7 +14,7 @@ export default function Header() {
   return (
     <>
       <button className={`fixed left-0 text-3xl text-Paleta1-100 z-50`} onClick={()=>setHeaderShow(!headerShow)}><BiArrowToRight/></button>
-      <button className={`fixed mx-24 text-2xl left-0 text-Paleta1-100 z-50 ${!headerShow&&"hidden"}`} onClick={()=>setHeaderShow(!headerShow)}><BiArrowToLeft/></button>
+      <button className={`fixed mx-24 text-2xl left-0 text-Paleta1-100 z-50 ${!headerShow&&"hidden"} md:hidden`} onClick={()=>setHeaderShow(!headerShow)}><BiArrowToLeft/></button>
       <header className={`fixed bg-Ceast-bay-600 z-50  w-24 p-3 h-screen left-0 items-center flex-col ${!headerShow&&"hidden"} md:flex text-center`}>
       {!logged?
         <>
@@ -23,7 +23,7 @@ export default function Header() {
         </>
         : <button onClick={()=>{Dispatch(logoutUser());navigate('/')}}>Log out</button>
       }
-        <div className={`bg-Paleta1-300 rounded-full w-10 h-10 overflow-hidden`} >
+        <div className={`bg-Paleta1-300 rounded-full w-10 h-10 overflow-hidden mx-auto`} >
           {logged&&<img src={userPhoto}/>}
         </div>
         {logged&&<p className={`text-Paleta1-300 font-bold`}>{name}</p>}

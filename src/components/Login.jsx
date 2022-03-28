@@ -18,7 +18,7 @@ export default function Login() {
   return(
     <>
     {(logged && loginShow) && Dispatch(loginDisplay())}
-    {loginShow&&<div className='bg-Cfinn-900 opacity-60 h-screen w-screen fixed z-40'></div>}
+    {loginShow&&<div onClick={()=>Dispatch(loginDisplay())} className='bg-Cfinn-900 opacity-60 h-screen w-screen fixed z-40'></div>}
     <div className={`bg-gradient-to-r from-Cmaroon-flush-600 to-Cfinn-700 fixed  max-h-fit max-w-fit rounded-md top-24 grid grid-cols-2 ${!loginShow?"hidden":""} z-50`}>
       <div className='p-10'>
         <button onClick={()=>Dispatch(loginDisplay())} className='absolute right-4 top-2 text-Cmaroon-flush-800'>X</button>
