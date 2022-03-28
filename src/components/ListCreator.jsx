@@ -20,7 +20,9 @@ export default function ListCreator() {
     }
     
   return (
-    <div className={`absolute top-0 right-8 bg-red-400 ${!listCreatorShow&&'hidden'} `}>
+    <>
+    <div onClick={()=>Dispatch(listCreatorDisplay())} className={`bg-Cfinn-900 opacity-60 h-screen w-screen fixed z-30 left-0 top-0 ${!listCreatorShow&&'hidden'} `}></div>
+    <div className={`absolute top-0 right-8 bg-red-400 z-50 ${!listCreatorShow&&'hidden'} `}>
         <button onClick={()=>Dispatch(listCreatorDisplay())}>x</button>
         <h2>ListCreator</h2>
         <form className='flex flex-col' onSubmit={send} action="">
@@ -31,5 +33,6 @@ export default function ListCreator() {
         </form>
 
     </div>
+    </>
   )
 }

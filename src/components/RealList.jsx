@@ -9,17 +9,17 @@ export default function RealList({ title, description, photo, tasks, date, idLis
 
    
     return (
-        <article className='bg-Paleta1-300 flex-shrink-0 w-48  mt-2 mx-1 shadow-lg relative '>
-            {menu && <TasksOptions idTeam={idTeam} idList={idList}/> }
+        <article className='bg-Paleta1-300 flex-shrink-0 w-48  mt-2 mx-auto md:mx-1 shadow-lg relative '>
+            {menu && <TasksOptions idTeam={idTeam} idList={idList} data={{ title, description, photo}}/> }
             <h2 className='text-lg text-Paleta1-100'>{title}</h2>
             <p>{description}</p>
-            <button onClick={() => setMenu(!menu)} className='absolute top-0 right-1 z-50'>+</button>
+            <button onClick={() => setMenu(!menu)} className='absolute top-0 right-1 z-50'>...</button>
             <div className='max-h-56 overflow-hidden'>
                 <img className='' src={photo} alt="" />
             </div>
             <div className=''>
                 {tasks.map((task, i) => {
-                    return <Task key={task._id} data={task} />
+                    return <Task key={task._id} data={task} idTeam={idTeam} />
                 })}
             </div>
         </article>

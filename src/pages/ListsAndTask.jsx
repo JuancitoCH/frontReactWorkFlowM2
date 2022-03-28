@@ -9,8 +9,8 @@ import { MdOutlineLibraryAdd } from 'react-icons/md'
 
 export default function ListsAndTask() {
 
-    const { listCreatorShow } = useSelector(state => state.displays)
-    const { changeLists,teams } = useSelector(state => state.teams)
+    // const { listCreatorShow } = useSelector(state => state.displays)
+    const { changeLists } = useSelector(state => state.teams)
     const Dispatch = useDispatch()
     const { idTeam } = useParams()
     const [listas, setListas] = useState([])
@@ -33,7 +33,7 @@ export default function ListsAndTask() {
                 <div className='absolute right-1 text-xl text-white font-bold top-1'>
                     <p>{roleUserTeam}</p>
                 </div>
-                <div className=' md:overflow-x-scroll md:flex mt-2 min-w-full'>
+                <div className=' md:overflow-x-scroll md:flex mt-2 min-w-full pb-1'>
                     {listas.map(lista => {
                         return <RealList key={lista._id} idList={lista._id} title={lista.title} description={lista.description} photo={lista.photo} tasks={lista.tasks} date={lista.date} />
                     })}
@@ -41,6 +41,7 @@ export default function ListsAndTask() {
                 </div>
 
             </div>
+            
             <ListCreator />
         </section>
     )

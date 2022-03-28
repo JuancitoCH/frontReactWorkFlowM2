@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { setTeams, createTeamUser } from '../features/teams/teamsSlice'
+import { createTeamUser } from '../features/teams/teamsSlice'
 import { teamCreatorDisplay } from '../features/displays/displaySlice'
 import { useDispatch,useSelector } from 'react-redux'
 import List from './OneTeam'
@@ -25,6 +25,8 @@ export default function TeamsCreator() {
   }
 
   return (
+    <>
+    <div onClick={()=>display()} className={`bg-Cfinn-900 opacity-60 h-screen w-screen fixed z-30 left-0 top-0 ${!teamCreatorShow&&'hidden'} `}></div>
     
     <div className={`absolute ${teamCreatorShow?"grid":"hidden"}  bg-slate-400 z-30 grid-cols-2 right-0`}>
       <button onClick={display} className='absolute right-0 z-10'>x</button>
@@ -41,5 +43,6 @@ export default function TeamsCreator() {
       <button onClick={display} className=''>Cancel</button>
 
     </div>
+    </>
   )
 }

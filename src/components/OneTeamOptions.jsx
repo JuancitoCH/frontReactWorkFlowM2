@@ -27,11 +27,14 @@ export default function OneTeamOptions({ idTeam }) {
         Dispatch(setChangeTeams(data))
     }
     const [searchUsers, setSearchUsers] = useState({})
+    const [addMember, setAddMember] = useState(false)
+    const [editTeam, setEditTeam] = useState(false)
 
     return (
         <div className={` absolute left-16 z-40 bg-slate-900`}>
-            <button>add Member</button>
-
+            <button onClick={()=>setAddMember(!addMember)}>add Member</button>
+            <button onClick={()=>setEditTeam(!editTeam)}>Edit Team</button>
+            {addMember&&
             <div className='text-slate-800'>
                 <form action="" onSubmit={addUserTeam}>
                     <input onChange={searchUser} type="text" name='email' placeholder='Email...' />
@@ -42,6 +45,11 @@ export default function OneTeamOptions({ idTeam }) {
                     }
                 </form>
             </div>
+            }
+            {editTeam &&
+                 <div className=''></div>
+
+            }
 
         </div>
     )
