@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import { useDispatch } from 'react-redux'
 import { setChangeList, updateList } from '../features/teams/teamsSlice'
 import { post } from '../api/axiosConfig'
+import {GrFormClose} from 'react-icons/gr'
 
 
 export default function TasksOptions({idTeam,idList,data}) {
@@ -30,26 +31,26 @@ export default function TasksOptions({idTeam,idList,data}) {
 
     return (
         <div>
-            <div className={`absolute bg-white flex flex-col z-40 `}>
-                <button className='' onClick={() => { setAddTask(!addTask) }}>add Task</button>
-                <button className='' onClick={() => { setEditList(!editList) }}>Edit list</button>
+            <div className={`absolute flex flex-col rounded-sm z-40 bg-white text-gmorado-900 text-center `}>
+                <button className='hover:bg-gbluebell-700 hover:text-white transition-colors ease-in p-2' onClick={() => { setAddTask(!addTask) }}>add Task</button>
+                <button className='hover:bg-gbluebell-700 hover:text-white transition-colors ease-in p-2' onClick={() => { setEditList(!editList) }}>Edit list</button>
             </div>
-            <div className={` absolute p-5 bg-slate-500 left-40 z-50 ${!addTask && "hidden"}`}>
-                <button className='asbsolute right-0' onClick={() => setAddTask(!addTask)}>x</button>
+            <div className={` bg-white rounded-xl overflow-hidden text-center left-20 z-50 absolute text-gmorado-900 border-grosa1-50 border-2 p-2 ${!addTask && "hidden"}`}>
+                <button className='absolute right-1' onClick={() => setAddTask(!addTask)}><GrFormClose/></button>
                 <form className='' action="" onSubmit={createtask}>
                     <input name='name' type="text" placeholder='name...' />
                     <input name='description' type="text" placeholder='description...' />
-                    <button>send</button>
+                    <button className='hover:text-grosa1-50 font-semibold '>Add</button>
                 </form>
             </div>
 
-            <div className={` absolute p-5 bg-slate-500 left-40 z-50 ${!editList && "hidden"}`}>
-                <button className='asbsolute right-0' onClick={() => setEditList(!editList)}>x</button>
+            <div className={` bg-white rounded-xl overflow-hidden text-center left-20 z-50 absolute text-gmorado-900 border-grosa1-50 border-2 p-2 ${!editList && "hidden"}`}>
+                <button className='absolute right-1' onClick={() => setEditList(!editList)}><GrFormClose/></button>
                 <form className='' action="" onSubmit={updateListEvent}>
                     <input name='title' type="text" placeholder='title...' defaultValue={data.title} />
                     <input name='description' type="text" placeholder='description...' defaultValue={data.description} />
                     <input name='photo' type="text" placeholder='url...' defaultValue={data.photo} />
-                    <button onClick={() => setEditList(!editList)}>Update</button>
+                    <button className='hover:text-grosa1-50 font-semibold ' onClick={() => setEditList(!editList)}>Update</button>
                 </form>
             </div>
         </div>

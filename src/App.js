@@ -10,6 +10,7 @@ import Teams from './pages/Teams';
 import {useDispatch} from 'react-redux'
 import {validateLog} from './features/user/userSlice'
 import ListAndTask from './pages/ListsAndTask'
+import AlertErrorTeams from './components/AlertErrorTeams';
 function App() {
   const Dispatch=useDispatch()
   useEffect(()=>{
@@ -18,8 +19,9 @@ function App() {
   return (
     <div className='md:ml-24 relative flex justify-center'>
     <BrowserRouter>
-    <div className='bg-Cwaikawa-gray-900 -z-50 h-screen w-screen fixed'></div>
+    <div className='bg-white -z-50 h-screen w-screen fixed'></div>
     <AlertError/>
+    <AlertErrorTeams/>
     <Header/>
     <Login/>
     <Register/>

@@ -30,10 +30,10 @@ export default function Teams() {
   return (
     <>
     <TeamsCreator/>
-    <div className={`w-[calc(100%-2rem)] min-h-[calc(100vh-2rem)] mt-1 mb-2 bg-Cwaikawa-gray-800 rounded-sm shadow-xl`}>
+    <div className={`w-[calc(100%-2rem)] min-h-[calc(100vh-2rem)] mt-1 mb-2 bg-gbluebell-300 rounded-sm shadow-xl`}>
         <div className='flex'>
-        <h1 className='text-3xl ml-2 mr-2 text-white'>Teams</h1>
-        <button onClick={displayCreator} className='text-3xl text-Cmaroon-flush-500 hover:text-Cmaroon-flush-300'><MdOutlineLibraryAdd/></button>
+        <h1 className='text-3xl ml-2 mr-2 text-gmorado-900'>Teams</h1>
+        <button onClick={displayCreator} className='text-3xl text-gbluebell-900 hover:text-gamarillo-500'><MdOutlineLibraryAdd/></button>
         </div>
         <div className='flex justify-center flex-wrap '>
             {/* {console.log(teams)} */}

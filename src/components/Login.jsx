@@ -18,8 +18,8 @@ export default function Login() {
   return(
     <>
     {(logged && loginShow) && Dispatch(loginDisplay())}
-    {loginShow&&<div onClick={()=>Dispatch(loginDisplay())} className='bg-Cfinn-900 opacity-60 h-screen w-screen fixed z-40'></div>}
-    <div className={`bg-gradient-to-r from-Cmaroon-flush-600 to-Cfinn-700 fixed  max-h-fit max-w-fit rounded-md top-24 grid grid-cols-2 ${!loginShow?"hidden":""} z-50`}>
+    {loginShow&&<div onClick={()=>Dispatch(loginDisplay())} className='bg-gmoradoclaro-700 opacity-50 h-screen w-screen fixed z-40'></div>}
+    <div className={`bg-gradient-to-r from-gmorado-600 to-grosa1-50 fixed  max-h-fit max-w-fit rounded-md top-24 grid grid-cols-2 ${!loginShow?"hidden":""} z-50`}>
       <div className='p-10'>
         <button onClick={()=>Dispatch(loginDisplay())} className='absolute right-4 top-2 text-Cmaroon-flush-800'>X</button>
         <form action="" onSubmit={send} className="flex flex-col">
@@ -28,7 +28,7 @@ export default function Login() {
           <input  type="email" className='' name='email' required />
           <label className='text-Cwaikawa-gray-200' htmlFor="password">Password</label>
           <input  type="password" className='' name='password' required/>
-          <button className='bg-gradient-to-r from-violet-500 to-fuchsia-500 text-Cfinn-200 mt-2 mx-7' onClick={()=>{Dispatch(loginState())}} >Login</button>
+          <button className='bg-gradient-to-r from-violet-500 to-grosa1-50 text-Cfinn-200 mt-2 mx-7' onClick={()=>{Dispatch(loginState())}} >Login</button>
         </form>
         <div className='h-1 bg-Cjelly-bean-600 my-5 mx-20'></div>
           <a href="/" className='flex items-center justify-center bg-gradient-to-r from-amber-200 to-sky-500  rounded-sm my-5 mx-7 text-Cwaikawa-gray-800'> <FcGoogle/><p> Login with Google</p></a>

@@ -7,6 +7,9 @@ export const createTeamUser = createAsyncThunk('teams/createTeamUser', async (cr
         description: credentials.description,
         img: credentials.img
     })
+    if (data.success === false) {
+        thunkAPI.rejectWithValue(data)
+    }
     return data
 })
 export const createList = createAsyncThunk('teams/createList', async (credentials, thunkAPI) => {
@@ -16,7 +19,9 @@ export const createList = createAsyncThunk('teams/createList', async (credential
         photo: credentials.photo
     })
 
-
+    if (data.success === false) {
+        thunkAPI.rejectWithValue(data)
+    }
     //    if(!data.success){
     //       return thunkAPI.rejectWithValue(data)
     //    }
@@ -27,7 +32,7 @@ export const deleteMemberTeam = createAsyncThunk('teams/deleteMemberTeam', async
     const { data } = await post('teams/delete/member/' + credentials.idTeam, {
         idUser: credentials.idUser
     })
-    if(!data.success){
+    if (!data.success) {
         thunkAPI.rejectWithValue(data)
     }
     return data
@@ -35,34 +40,46 @@ export const deleteMemberTeam = createAsyncThunk('teams/deleteMemberTeam', async
 export const updateTask = createAsyncThunk('teams/updateTask', async (credentials, thunkAPI) => {
     const { data } = await post('teams/update/task/global/' + credentials.idTeam, {
         idTask: credentials.idTask,
-        name:credentials.name,
-        description:credentials.description
+        name: credentials.name,
+        description: credentials.description
     })
     // console.log(data)
-    if(data.success===false){
+    if (data.success === false) {
+        thunkAPI.rejectWithValue(data)
+    }
+    return data
+})
+export const updateTeam = createAsyncThunk('teams/updateTeam', async (credentials, thunkAPI) => {
+    const { data } = await post('teams/update/team/' + credentials.idTeam, {
+        img: credentials.img,
+        name: credentials.name,
+        description: credentials.description
+    })
+    // console.log(data)
+    if (data.success === false) {
         thunkAPI.rejectWithValue(data)
     }
     return data
 })
 
 export const commentTask = createAsyncThunk('teams/commentTask', async (credentials, thunkAPI) => {
-    const { data } = await post('teams/create/comment/task/'+ credentials.idTeam, {
+    const { data } = await post('teams/create/comment/task/' + credentials.idTeam, {
         idTask: credentials.idTask,
-        comment:credentials.comment,
-        document:credentials.document
+        comment: credentials.comment,
+        document: credentials.document
     })
-    if(data.success===false){
+    if (data.success === false) {
         thunkAPI.rejectWithValue(data)
     }
     return data
 })
 export const deleteComment = createAsyncThunk('teams/deleteComment', async (credentials, thunkAPI) => {
-    const { data } = await post('teams/delete/comment/task/'+ credentials.idTeam, {
-        idComment:credentials.idComment,
+    const { data } = await post('teams/delete/comment/task/' + credentials.idTeam, {
+        idComment: credentials.idComment,
         idTask: credentials.idTask
     })
     console.log(data)
-    if(data.success===false){
+    if (data.success === false) {
         thunkAPI.rejectWithValue(data)
     }
     return data
@@ -70,10 +87,10 @@ export const deleteComment = createAsyncThunk('teams/deleteComment', async (cred
 export const deleteTaskMember = createAsyncThunk('teams/deleteTaskMember', async (credentials, thunkAPI) => {
     const { data } = await post('teams/delete/task/member/' + credentials.idTeam, {
         idTask: credentials.idTask,
-        idUser:credentials.idUser
+        idUser: credentials.idUser
     })
     // console.log(data)
-    if(data.success===false){
+    if (data.success === false) {
         thunkAPI.rejectWithValue(data)
     }
     return data
@@ -81,10 +98,10 @@ export const deleteTaskMember = createAsyncThunk('teams/deleteTaskMember', async
 export const addTaskMember = createAsyncThunk('teams/addTaskMember', async (credentials, thunkAPI) => {
     const { data } = await post('teams/update/task/member/' + credentials.idTeam, {
         idTask: credentials.idTask,
-        idUser:credentials.idUser
+        idUser: credentials.idUser
     })
     // console.log(data)
-    if(data.success===false){
+    if (data.success === false) {
         thunkAPI.rejectWithValue(data)
     }
     return data
@@ -93,12 +110,12 @@ export const addTaskMember = createAsyncThunk('teams/addTaskMember', async (cred
 export const updateList = createAsyncThunk('teams/updateList', async (credentials, thunkAPI) => {
     const { data } = await post('teams/update/teamlist/' + credentials.idTeam, {
         idList: credentials.idList,
-        description:credentials.description,
-        title:credentials.title,
-        photo:credentials.photo
+        description: credentials.description,
+        title: credentials.title,
+        photo: credentials.photo
     })
     // console.log(data)
-    if(data.success===false){
+    if (data.success === false) {
         thunkAPI.rejectWithValue(data)
     }
     return data
@@ -136,9 +153,24 @@ const teamsSlice = createSlice({
         builder.addCase(createTeamUser.fulfilled, (state, action) => {
             state.loading = false
             // console.log(action.payload)
-            state.changeTeams = !state.changeLists
+            state.changeTeams = action.payload
         })
         builder.addCase(createTeamUser.rejected, (state, action) => {
+            state.loading = false
+            state.error = true
+            state.message = action.payload.message
+        })
+
+        
+        builder.addCase(updateTeam.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(updateTeam.fulfilled, (state, action) => {
+            state.loading = false
+            // console.log(action.payload)
+            state.changeTeams = action.payload
+        })
+        builder.addCase(updateTeam.rejected, (state, action) => {
             state.loading = false
             state.error = true
             state.message = action.payload.message

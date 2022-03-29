@@ -26,9 +26,9 @@ export default function TeamsCreator() {
 
   return (
     <>
-    <div onClick={()=>display()} className={`bg-Cfinn-900 opacity-60 h-screen w-screen fixed z-30 left-0 top-0 ${!teamCreatorShow&&'hidden'} `}></div>
+    <div onClick={()=>display()} className={`bg-gmoradoclaro-700 opacity-50 h-screen w-screen fixed z-30 left-0 top-0 ${!teamCreatorShow&&'hidden'} `}></div>
     
-    <div className={`absolute ${teamCreatorShow?"grid":"hidden"}  bg-slate-400 z-30 grid-cols-2 right-0`}>
+    <div className={`absolute ${teamCreatorShow?"grid":"hidden"}  text-gmorado-900 bg-gbluebell-500  grid-cols-2 top-10 z-50 `}>
       <button onClick={display} className='absolute right-0 z-10'>x</button>
       <div>
         <form action="" onSubmit={createTeam}>
