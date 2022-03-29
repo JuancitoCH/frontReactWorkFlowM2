@@ -31,7 +31,7 @@ export default function Login() {
           <button className='bg-gradient-to-r from-violet-500 to-grosa1-50 text-Cfinn-200 mt-2 mx-7' onClick={()=>{Dispatch(loginState())}} >Login</button>
         </form>
         <div className='h-1 bg-Cjelly-bean-600 my-5 mx-20'></div>
-          <a href="/" className='flex items-center justify-center bg-gradient-to-r from-amber-200 to-sky-500  rounded-sm my-5 mx-7 text-Cwaikawa-gray-800'> <FcGoogle/><p> Login with Google</p></a>
+          <a href="https://workflowproyectomes2.herokuapp.com/authenticate/google" className='flex items-center justify-center bg-gradient-to-r from-amber-200 to-sky-500  rounded-sm my-5 mx-7 text-Cwaikawa-gray-800'> <FcGoogle/><p> Login with Google</p></a>
       </div>
       <div className='bg-slate-700 bg-[url("https://media.istockphoto.com/vectors/online-registration-and-sign-up-concept-young-man-signing-up-or-login-vector-id1219250758?k=20&m=1219250758&s=170667a&w=0&h=L92i6CGjAyshZXG5ViGpZqq3OuVjleC-hIM2AkaMd8s=")]'>
         {/* <img className='con' src="https://media.istockphoto.com/vectors/online-registration-and-sign-up-concept-young-man-signing-up-or-login-vector-id1219250758?k=20&m=1219250758&s=170667a&w=0&h=L92i6CGjAyshZXG5ViGpZqq3OuVjleC-hIM2AkaMd8s=" alt="aaa" /> */}
